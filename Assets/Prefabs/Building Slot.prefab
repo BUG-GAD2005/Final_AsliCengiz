@@ -437,9 +437,10 @@ GameObject:
   - component: {fileID: 6164297718749208939}
   - component: {fileID: 4349348766244482106}
   - component: {fileID: 3650242517448391805}
+  - component: {fileID: 7712410844655915132}
   m_Layer: 5
   m_Name: Building Slot
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,6 +505,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7712410844655915132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7686009427472975961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daea70a323d512f4a81f990e724d106f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7966724257101937948
 GameObject:
   m_ObjectHideFlags: 0
