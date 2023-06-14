@@ -15,4 +15,10 @@ MonoBehaviour:
   _name: 
   _costGold: 0
   _costGem: 0
-  thumbnail: {fileID: 0}
+  tile_building: {fileID: 21300000, guid: 3ea7f9cfad8daf4409029dc277d47ac5, type: 3}
+  columns: 3
+  rows: 3
+  board:
+  - columns: 000100
+  - columns: 010101
+  - columns: 010101
