@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BuildingShapeData : MonoBehaviour
+public class BuildingShapeSquareOccupy : MonoBehaviour
 {
-    public Image occuipedImage;
+    public Image occupiedImage;
 
     private void Start()
     {
-        occuipedImage.gameObject.SetActive(false);   
+        occupiedImage.gameObject.SetActive(false);   
     }
 }

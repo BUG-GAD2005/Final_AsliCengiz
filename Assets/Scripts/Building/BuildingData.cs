@@ -4,17 +4,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEditor;
 
 [Serializable]
 [CreateAssetMenu(menuName = "Building")]
 public class BuildingData : ScriptableObject
 {
     public string _name;
+    public Sprite _iconBuilding;
 
     public int _costGold;
     public int _costGem;
 
-    public Sprite tile_building;
+    public int _generateGold;
+    public int _generateGem;
+    public float _InSeconds;
 
     [Serializable]
     public class Row
@@ -42,23 +46,23 @@ public class BuildingData : ScriptableObject
             }
         }
     }
-    public int columns = 0;
-    public int rows = 0;
+    public int _columns = 0;
+    public int _rows = 0;
 
     public Row[] board;
     public void Clear()
     {
-        for (var i = 0; i < rows; i++)
+        for (var i = 0; i < _rows; i++)
         {
             board[i].ClearRow();
         }
     }
     public void CreateNewBoard()
     {
-        board = new Row[rows];
-        for (var i = 0; i < rows; i++)
+        board = new Row[_rows];
+        for (var i = 0; i < _rows; i++)
         {
-            board[i] = new Row(columns);
+            board[i] = new Row(_columns);
         }
     }
 

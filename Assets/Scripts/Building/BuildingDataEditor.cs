@@ -9,10 +9,13 @@ using static UnityEngine.GraphicsBuffer;
 [System.Serializable]
 public class BuildingDataEditor : Editor
 {
-    private BuildingData ShapeDataInstance => target as BuildingData;
+    private BuildingData BuildingDataInstance => target as BuildingData;
 
     public override void OnInspectorGUI()
     {
+        DrawDataInputs();
+        EditorGUILayout.Space();
+
         serializedObject.Update();
         ClearBoardButton();
         EditorGUILayout.Space();
@@ -20,7 +23,7 @@ public class BuildingDataEditor : Editor
         DrawColumnsInputFields();
         EditorGUILayout.Space();
 
-        if (ShapeDataInstance.board != null && ShapeDataInstance.columns > 0 && ShapeDataInstance.rows > 0)
+        if (BuildingDataInstance.board != null && BuildingDataInstance._columns > 0 && BuildingDataInstance._rows > 0)
         {
             DrawBoardTable();
         }
@@ -28,27 +31,42 @@ public class BuildingDataEditor : Editor
 
         if (GUI.changed)
         {
-            EditorUtility.SetDirty(ShapeDataInstance);
+            EditorUtility.SetDirty(BuildingDataInstance);
         }
+    }
+
+    private void DrawDataInputs()
+    {
+        BuildingDataInstance._name = EditorGUILayout.TextField("Name", BuildingDataInstance._name);
+        BuildingDataInstance._iconBuilding = (Sprite)EditorGUILayout.ObjectField("Building Icon",BuildingDataInstance._iconBuilding, typeof(Sprite), true);
+        EditorGUILayout.Space();
+
+        BuildingDataInstance._costGold = EditorGUILayout.IntField("Gold Cost", BuildingDataInstance._costGold);
+        BuildingDataInstance._costGem = EditorGUILayout.IntField("Gem Cost", BuildingDataInstance._costGem);
+        EditorGUILayout.Space();
+
+        BuildingDataInstance._generateGold = EditorGUILayout.IntField("Gold Generate", BuildingDataInstance._generateGold);
+        BuildingDataInstance._generateGem = EditorGUILayout.IntField("Gem Generate", BuildingDataInstance._generateGem);
+        BuildingDataInstance._InSeconds = EditorGUILayout.FloatField("In Seconds", BuildingDataInstance._InSeconds);
     }
     private void ClearBoardButton()
     {
         if (GUILayout.Button("Clear Board"))
         {
-            ShapeDataInstance.Clear();
+            BuildingDataInstance.Clear();
         }
     }
     private void DrawColumnsInputFields()
     {
-        var columnsTemp = ShapeDataInstance.columns;
-        var rowsTemp = ShapeDataInstance.rows;
+        var columnsTemp = BuildingDataInstance._columns;
+        var rowsTemp = BuildingDataInstance._rows;
 
-        ShapeDataInstance.columns = EditorGUILayout.IntField("Columns", ShapeDataInstance.columns);
-        ShapeDataInstance.rows = EditorGUILayout.IntField("Rows", ShapeDataInstance.rows);
+        BuildingDataInstance._columns = EditorGUILayout.IntField("Columns", BuildingDataInstance._columns);
+        BuildingDataInstance._rows = EditorGUILayout.IntField("Rows", BuildingDataInstance._rows);
 
-        if ((ShapeDataInstance.columns != columnsTemp || ShapeDataInstance.rows != rowsTemp) && ShapeDataInstance.columns > 0 && ShapeDataInstance.rows > 0)
+        if ((BuildingDataInstance._columns != columnsTemp || BuildingDataInstance._rows != rowsTemp) && BuildingDataInstance._columns > 0 && BuildingDataInstance._rows > 0)
         {
-            ShapeDataInstance.CreateNewBoard();
+            BuildingDataInstance.CreateNewBoard();
         }
     }
     private void DrawBoardTable()
@@ -69,14 +87,14 @@ public class BuildingDataEditor : Editor
         dataFieldStyle.normal.background = Texture2D.grayTexture;
         dataFieldStyle.onNormal.background = Texture2D.whiteTexture;
 
-        for (var row = 0; row < ShapeDataInstance.rows; row++)
+        for (var row = 0; row < BuildingDataInstance._rows; row++)
         {
             EditorGUILayout.BeginHorizontal(headerColumnStyle);
-            for (var column = 0; column < ShapeDataInstance.columns; column++)
+            for (var column = 0; column < BuildingDataInstance._columns; column++)
             {
                 EditorGUILayout.BeginHorizontal(rowStyle);
-                var data = EditorGUILayout.Toggle(ShapeDataInstance.board[row].columns[column], dataFieldStyle);
-                ShapeDataInstance.board[row].columns[column] = data;
+                var data = EditorGUILayout.Toggle(BuildingDataInstance.board[row].columns[column], dataFieldStyle);
+                BuildingDataInstance.board[row].columns[column] = data;
                 EditorGUILayout.EndHorizontal();
             }
             EditorGUILayout.EndHorizontal();

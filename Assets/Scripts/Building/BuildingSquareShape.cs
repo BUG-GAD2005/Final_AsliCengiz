@@ -1,22 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
-public class BuildingGameObject : MonoBehaviour
+public class BuildingSquareShape : MonoBehaviour
 {
     public bool isMovable { get; private set; } = true;
 
     public GameObject squareShapeImage;
     public BuildingData buildingData;
     public List<GameObject> _currentShape = new List<GameObject>();
-    public void RequestNewShape(BuildingData shapeData)
-    {
-        CreateShape(shapeData);
-    }
+    //public void RequestNewShape(BuildingData shapeData)
+    //{
+    //    CreateShape(shapeData);
+    //}
 
     private void Start()
     {
-        RequestNewShape(buildingData);
+        //RequestNewShape(buildingData);
+        CreateShape(buildingData);
     }
     public void CreateShape(BuildingData shapeData)
     {
@@ -37,9 +39,9 @@ public class BuildingGameObject : MonoBehaviour
 
         int currentIndexList = 0;
         //Set positions to form final shape
-        for (var row = 0; row < shapeData.rows; row++)
+        for (var row = 0; row < shapeData._rows; row++)
         {
-            for (var column = 0; column < shapeData.columns; column++)
+            for (var column = 0; column < shapeData._columns; column++)
             {
                 if (shapeData.board[row].columns[column])
                 {
@@ -55,12 +57,12 @@ public class BuildingGameObject : MonoBehaviour
     private float GetYPositionForShapeSquare(BuildingData shapeData, int row, Vector2 moveDistance)
     {
         float shiftOnY = 0f;
-        if (shapeData.rows > 1)
+        if (shapeData._rows > 1)
         {
-            if (shapeData.rows % 2 != 0)
+            if (shapeData._rows % 2 != 0)
             {
-                var middleSquareIndex = (shapeData.rows - 1) / 2;
-                var multiplier = (shapeData.rows - 1) / 2 - row;
+                var middleSquareIndex = (shapeData._rows - 1) / 2;
+                var multiplier = (shapeData._rows - 1) / 2 - row;
 
                 if (row < middleSquareIndex)//move it on minus
                 {
@@ -75,9 +77,9 @@ public class BuildingGameObject : MonoBehaviour
             }
             else
             {
-                var middleSquareIndex2 = (shapeData.rows == 2) ? 1 : shapeData.rows / 2;
-                var middleSquareIndex1 = (shapeData.rows == 2) ? 0 : shapeData.rows - 2;
-                var multiplier = shapeData.rows / 2;
+                var middleSquareIndex2 = (shapeData._rows == 2) ? 1 : shapeData._rows / 2;
+                var middleSquareIndex1 = (shapeData._rows == 2) ? 0 : shapeData._rows - 2;
+                var multiplier = shapeData._rows / 2;
 
                 if (row == middleSquareIndex1 || row == middleSquareIndex2)
                 {
@@ -103,12 +105,12 @@ public class BuildingGameObject : MonoBehaviour
     private float GetXPositionForShapeSquare(BuildingData shapeData, int column, Vector2 moveDistance)
     {
         float shiftOnX = 0f;
-        if (shapeData.columns > 1)//vertical position calculate
+        if (shapeData._columns > 1)//vertical position calculate
         {
-            if (shapeData.columns % 2 != 0)
+            if (shapeData._columns % 2 != 0)
             {
-                var middleSquareIndex = (shapeData.columns - 1) / 2;
-                var multiplier = (shapeData.columns - 1) / 2 - column;
+                var middleSquareIndex = (shapeData._columns - 1) / 2;
+                var multiplier = (shapeData._columns - 1) / 2 - column;
                 if (column < middleSquareIndex)//move it on the negative
                 {
                     shiftOnX = moveDistance.x;
@@ -122,9 +124,9 @@ public class BuildingGameObject : MonoBehaviour
             }
             else
             {
-                var middleSquareIndex2 = (shapeData.columns == 2) ? 1 : shapeData.columns / 2;
-                var middleSquareIndex1 = (shapeData.columns == 2) ? 0 : shapeData.columns - 1;
-                var multiplier = shapeData.columns / 2;
+                var middleSquareIndex2 = (shapeData._columns == 2) ? 1 : shapeData._columns / 2;
+                var middleSquareIndex1 = (shapeData._columns == 2) ? 0 : shapeData._columns - 1;
+                var multiplier = shapeData._columns / 2;
                 if (column == middleSquareIndex1 || column == middleSquareIndex2)
                 {
                     if (column == middleSquareIndex2)
