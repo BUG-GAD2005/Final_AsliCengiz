@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildingSquareShape : MonoBehaviour
 {
@@ -14,6 +15,37 @@ public class BuildingSquareShape : MonoBehaviour
     {
         CreateShape(shapeData);
     }
+
+    public void PlacingShape()
+    {
+        foreach (var square in _currentShape)
+        {
+            if (CanPlaceShape())
+            {
+                square.GetComponent<Image>().color = Color.green;
+
+            }
+            else
+            {
+                square.GetComponent<Image>().color = Color.red;
+
+            }
+        }
+        
+    }
+
+    bool CanPlaceShape()
+    {
+        foreach (var square in _currentShape)
+        {
+            if (!square.GetComponent<PlacingBuilding>().canPlacingSquare)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public void CreateShape(BuildingData shapeData)
     {
         buildingData = shapeData;

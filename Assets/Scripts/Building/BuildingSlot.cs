@@ -69,7 +69,8 @@ public class BuildingSlot : MonoBehaviour
         buildingSquareShape = currentPrefab.GetComponent<BuildingSquareShape>();
         buildingSquareShape.RequestNewShape(buildingData);
 
-        currentPrefab.layer = LayerMask.NameToLayer("BuildingShape");
+        currentPrefab.layer = LayerMask.NameToLayer("UI");
+        currentPrefab.transform.position = Vector3.zero;
 
         return currentPrefab;
     }
@@ -77,5 +78,10 @@ public class BuildingSlot : MonoBehaviour
     public void DestroyBuildingShape(GameObject instantiatedBuildingShape)
     {
         Destroy(instantiatedBuildingShape);
+    }
+
+    public void TryPlaceBuilding()
+    {
+        buildingSquareShape.PlacingShape();
     }
 }

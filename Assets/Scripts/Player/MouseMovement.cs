@@ -10,7 +10,7 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     bool isDrag = false;
 
-    GameObject touchedShape;
+    public GameObject touchedShape;
     Vector3 touchedShapePos;
     Vector3 touchedShapeDefaultPos;
 
@@ -29,7 +29,7 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-        DropShape();
+        //DropShape();
     }
 
     void TouchShape()
@@ -39,6 +39,7 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             touchedShape = buildingSlot.InstantiateBuildingShape();
             isDrag = true;
             touchedShapePos = gameObject.transform.position;
+            touchedShapePos.z = 0;
             touchedShapeDefaultPos = touchedShapePos;
         }    
     }
@@ -50,6 +51,9 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             touchedShapePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             touchedShapePos.z = 0;
             touchedShape.transform.position = touchedShapePos;
+            touchedShape.transform.localPosition = new Vector3(touchedShape.transform.localPosition.x, touchedShape.transform.localPosition.y, 0);
+
+            buildingSlot.TryPlaceBuilding();
         }
     }
 
@@ -59,7 +63,7 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if (touchedShape != null)
         {
-            //if (touchedShape.GetComponent<Shape>().TryPlaceShape())
+            //if (buildingSlot.TryPlaceBuilding())
             //{
             //    touchedShape = null;
             //}
@@ -71,6 +75,7 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             buildingSlot.DestroyBuildingShape(touchedShape);
             touchedShape = null;
         }
+
     }
 
     
