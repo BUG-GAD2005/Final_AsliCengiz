@@ -65,10 +65,17 @@ public class BuildingSlot : MonoBehaviour
 
     public GameObject InstantiateBuildingShape()
     {
-        GameObject currentPrefab = Instantiate(buildingSquareShapePrefab, gameObject.transform);
+        GameObject currentPrefab = Instantiate(buildingSquareShapePrefab, transform);
         buildingSquareShape = currentPrefab.GetComponent<BuildingSquareShape>();
-        buildingSquareShape.buildingData = buildingData;
+        buildingSquareShape.RequestNewShape(buildingData);
+
+        currentPrefab.layer = LayerMask.NameToLayer("BuildingShape");
 
         return currentPrefab;
+    }
+
+    public void DestroyBuildingShape(GameObject instantiatedBuildingShape)
+    {
+        Destroy(instantiatedBuildingShape);
     }
 }

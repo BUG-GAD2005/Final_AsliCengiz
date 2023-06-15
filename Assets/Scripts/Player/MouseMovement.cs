@@ -34,11 +34,13 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     void TouchShape()
     {
-        isDrag = true;
-        touchedShape = buildingSlot.InstantiateBuildingShape();
-        touchedShapePos = gameObject.transform.position;
-        touchedShapeDefaultPos = touchedShapePos;
-  
+        if(!isDrag) 
+        {
+            touchedShape = buildingSlot.InstantiateBuildingShape();
+            isDrag = true;
+            touchedShapePos = gameObject.transform.position;
+            touchedShapeDefaultPos = touchedShapePos;
+        }    
     }
 
     void DragShape()
@@ -55,17 +57,20 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     {
         isDrag = false;
 
-        //if (touchedShape != null)
-        //{
-        //    if (touchedShape.GetComponent<Shape>().TryPlaceShape())
-        //    {
-        //        touchedShape = null;
-        //    }
-        //    else
-        //    {
-        //        touchedShape.transform.position = touchedShapeDefaultPos;
-        //    }
-        //}
+        if (touchedShape != null)
+        {
+            //if (touchedShape.GetComponent<Shape>().TryPlaceShape())
+            //{
+            //    touchedShape = null;
+            //}
+            //else
+            //{
+            //    touchedShape.transform.position = touchedShapeDefaultPos;
+            //}
+
+            buildingSlot.DestroyBuildingShape(touchedShape);
+            touchedShape = null;
+        }
     }
 
     

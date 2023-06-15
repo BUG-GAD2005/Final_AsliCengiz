@@ -18,12 +18,10 @@ public class InstantiateBuildingSlotCell : MonoBehaviour
             for (int i = 0; i < buildings.Length; i++)
             {
                 Array.Clear(buildings, i, buildings.Length);
-                //Debug.Log(buildings[i].name);
             }
         }
         else
         {
-            //Debug.Log("zatenboþþ???");
             buildings = Resources.LoadAll<BuildingData>("Buildings");
         }
     }

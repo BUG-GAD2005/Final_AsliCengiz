@@ -10,20 +10,15 @@ public class BuildingSquareShape : MonoBehaviour
     public GameObject squareShapeImage;
     public BuildingData buildingData;
     public List<GameObject> _currentShape = new List<GameObject>();
-    //public void RequestNewShape(BuildingData shapeData)
-    //{
-    //    CreateShape(shapeData);
-    //}
-
-    private void Start()
+    public void RequestNewShape(BuildingData shapeData)
     {
-        //RequestNewShape(buildingData);
-        CreateShape(buildingData);
+        CreateShape(shapeData);
     }
     public void CreateShape(BuildingData shapeData)
     {
         buildingData = shapeData;
         var totalSquareNumber = GetNumberOfSquares(shapeData);
+
         while (_currentShape.Count < totalSquareNumber)
         {
             _currentShape.Add(Instantiate(squareShapeImage, transform) as GameObject);
@@ -159,7 +154,9 @@ public class BuildingSquareShape : MonoBehaviour
             foreach (var active in rowData.columns)
             {
                 if (active)
+                {
                     number++;
+                }
             }
         }
         return number;

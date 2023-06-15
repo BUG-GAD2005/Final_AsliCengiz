@@ -46,5 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   squareShapeImage: {fileID: 7122062654537051169, guid: 7b4da223a0bd57b4aba0b3322fcb9193, type: 3}
   buildingData: {fileID: 11400000, guid: f304df9277f916a4fb0e74cda982fcb8, type: 2}
-  _currentShape:
-  - {fileID: 0}
+  _currentShape: []
