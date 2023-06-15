@@ -10,18 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c8f85a8a75c3f0e4da3bbc998008690f, type: 3}
-  m_Name: House
+  m_Name: Train
   m_EditorClassIdentifier: 
-  _name: House
-  _iconBuilding: {fileID: 21300000, guid: c0b4c11e757f56d4190d27e23bc55f8c, type: 3}
-  _costGold: 2
-  _costGem: 3
-  _generateGold: 1
-  _generateGem: 1
-  _InSeconds: 20
+  _name: Train
+  _iconBuilding: {fileID: 21300000, guid: abc30d548c32fdf4786923b92cad52a1, type: 3}
+  _costGold: 1
+  _costGem: 1
+  _generateGold: 0
+  _generateGem: 0
+  _InSeconds: 0
   _columns: 3
-  _rows: 3
+  _rows: 2
   board:
-  - columns: 000100
   - columns: 010101
   - columns: 010101

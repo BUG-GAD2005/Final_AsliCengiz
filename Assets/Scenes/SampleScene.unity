@@ -3125,37 +3125,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 569302442546476302, guid: 562a5f22e28ce664b92b1aaa1f0025c3, type: 3}
   m_PrefabInstance: {fileID: 634442327}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &648144390
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 648144391}
-  m_Layer: 0
-  m_Name: InstantiateBuildingSlotCell
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &648144391
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 648144390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8015833, y: 0.095623024, z: 32.573025}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &669966367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11823,7 +11792,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1399997726750929839, guid: dcb6c4c237ff36d4995a705c53bc41ad, type: 3}
       propertyPath: m_Name
-      value: BuildingGameObject
+      value: "BuildingSquareShape \xD6rn"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dcb6c4c237ff36d4995a705c53bc41ad, type: 3}

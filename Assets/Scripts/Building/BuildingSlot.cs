@@ -8,6 +8,8 @@ public class BuildingSlot : MonoBehaviour
 {
     public PlayerStats playerStats;
     public BuildingData buildingData;
+    public GameObject buildingSquareShapePrefab;
+    BuildingSquareShape buildingSquareShape;
 
     MouseMovement mouseMovement;
     public Image _cantPurchaseImage;
@@ -59,5 +61,14 @@ public class BuildingSlot : MonoBehaviour
             mouseMovement.enabled = false;
             _cantPurchaseImage.GetComponent<Image>().enabled = true;
         }
+    }
+
+    public GameObject InstantiateBuildingShape()
+    {
+        GameObject currentPrefab = Instantiate(buildingSquareShapePrefab, gameObject.transform);
+        buildingSquareShape = currentPrefab.GetComponent<BuildingSquareShape>();
+        buildingSquareShape.buildingData = buildingData;
+
+        return currentPrefab;
     }
 }

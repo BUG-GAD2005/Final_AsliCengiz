@@ -6,11 +6,18 @@ using UnityEngine.EventSystems;
 
 public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
+    BuildingSlot buildingSlot;
+
     bool isDrag = false;
 
     GameObject touchedShape;
     Vector3 touchedShapePos;
     Vector3 touchedShapeDefaultPos;
+
+    private void Start()
+    {
+        buildingSlot = gameObject.GetComponent<BuildingSlot>();
+    }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
         TouchShape();
@@ -28,9 +35,10 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     void TouchShape()
     {
         isDrag = true;
-        touchedShape = gameObject;
-        touchedShapePos = touchedShape.transform.position;
+        touchedShape = buildingSlot.InstantiateBuildingShape();
+        touchedShapePos = gameObject.transform.position;
         touchedShapeDefaultPos = touchedShapePos;
+  
     }
 
     void DragShape()
@@ -59,4 +67,6 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         //    }
         //}
     }
+
+    
 }

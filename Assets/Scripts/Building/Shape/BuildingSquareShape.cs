@@ -30,7 +30,7 @@ public class BuildingSquareShape : MonoBehaviour
         }
         foreach (var square in _currentShape)
         {
-            //square.gameObject.transform.position = Vector3.zero;
+            square.gameObject.transform.position = Vector3.zero;
             square.gameObject.SetActive(false);
         }
 
