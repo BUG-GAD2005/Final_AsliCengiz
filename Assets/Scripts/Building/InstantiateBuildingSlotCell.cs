@@ -22,12 +22,14 @@ public class InstantiateBuildingSlotCell : MonoBehaviour
             BuildingSlot buildingSlot = BuildingSlotPrefab.GetComponent<BuildingSlot>();
             buildingSlot.buildingData = building;
             buildingSlot.DisplaySlotInputs();
-
         }
     }
 
+
+
     private void Start()
     {
+
         GetAllBuildingResources();
         AssignValuesInBuildingSlot();
     }
