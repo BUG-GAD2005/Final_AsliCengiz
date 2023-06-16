@@ -16,9 +16,9 @@ public class BuildingData : ScriptableObject
     public int _costGold;
     public int _costGem;
 
-    public int _generateGold;
-    public int _generateGem;
-    public float _InSeconds;
+    public int _earnGold;
+    public int _earnGem;
+    public int _InSeconds;
 
     [Serializable]
     public class Row

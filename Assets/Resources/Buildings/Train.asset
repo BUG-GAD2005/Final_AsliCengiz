@@ -16,9 +16,9 @@ MonoBehaviour:
   _iconBuilding: {fileID: 21300000, guid: abc30d548c32fdf4786923b92cad52a1, type: 3}
   _costGold: 1
   _costGem: 50
-  _generateGold: 0
-  _generateGem: 0
-  _InSeconds: 0
+  _earnGold: 7
+  _earnGem: 8
+  _InSeconds: 9
   _columns: 3
   _rows: 2
   board:

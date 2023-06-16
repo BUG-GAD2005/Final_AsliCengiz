@@ -10,9 +10,14 @@ public class PlacingBuilding : MonoBehaviour
     PlayerStats playerStats;
 
     public Sprite tile_building;
+    public GameObject timerPrefab;
+    public GameObject canvas;
+
+    Vector3 upperSquare;
 
     private void Start()
     {
+        canvas = GameObject.Find("Canvas");
         buildingShape = GetComponent<BuildingShape>();
         _currentShape = buildingShape._currentShape;
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
@@ -39,8 +44,7 @@ public class PlacingBuilding : MonoBehaviour
         {
             if (CanPlaceShape())
             {
-                //square.transform.position = square.GetComponent<PlacingBuilding>().placeableGrid.transform.position;
-                square.GetComponent<PlacingBuildingSquareCheck>().placeableGrid.GetComponent<Image>().sprite = tile_building;
+                square.GetComponent<PlacingBuildingSquareCheck>().placeableGrid.GetComponent<Image>().sprite = tile_building;               
             }
         }
     }
@@ -71,6 +75,7 @@ public class PlacingBuilding : MonoBehaviour
     {
         PlacingShapeInGrid();
         SpendResources();
+        FindUpperSquareVector();
     }
 
     public void SpendResources()
@@ -82,4 +87,39 @@ public class PlacingBuilding : MonoBehaviour
             playerStats.SpendResources(gold, gem);
         }
     }
+
+    public void StartTimer(Vector3 upperSquare)
+    {
+        GameObject timerPref = Instantiate(timerPrefab, canvas.transform);
+        timerPref.transform.position = upperSquare + new Vector3 (0, 0.5f, 0);
+
+        AssignBuildingStats(timerPref);
+    }
+
+    void FindUpperSquareVector()
+    {       
+        upperSquare = gameObject.transform.position;
+        foreach (var square in _currentShape)
+        {
+            Vector3 squareY = square.transform.position;
+            if (upperSquare == null)
+            {
+                upperSquare.y = squareY.y;
+            }
+            else if(squareY.y > upperSquare.y)
+            {
+                upperSquare.y = squareY.y;
+            }
+        }
+
+        StartTimer(upperSquare);
+    }
+
+    void AssignBuildingStats(GameObject timerPref)
+    {
+        timerPref.GetComponent<BuildingStats>()._seconds = buildingShape.buildingData._InSeconds;
+        timerPref.GetComponent<BuildingStats>()._earnGold = buildingShape.buildingData._earnGold;
+        timerPref.GetComponent<BuildingStats>()._earnGem = buildingShape.buildingData._earnGem;
+    }
+
 }

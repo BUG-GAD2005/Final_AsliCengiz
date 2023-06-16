@@ -45,9 +45,9 @@ public class BuildingDataEditor : Editor
         BuildingDataInstance._costGem = EditorGUILayout.IntField("Gem Cost", BuildingDataInstance._costGem);
         EditorGUILayout.Space();
 
-        BuildingDataInstance._generateGold = EditorGUILayout.IntField("Gold Generate", BuildingDataInstance._generateGold);
-        BuildingDataInstance._generateGem = EditorGUILayout.IntField("Gem Generate", BuildingDataInstance._generateGem);
-        BuildingDataInstance._InSeconds = EditorGUILayout.FloatField("In Seconds", BuildingDataInstance._InSeconds);
+        BuildingDataInstance._earnGold = EditorGUILayout.IntField("Gold Generate", BuildingDataInstance._earnGold);
+        BuildingDataInstance._earnGem = EditorGUILayout.IntField("Gem Generate", BuildingDataInstance._earnGem);
+        BuildingDataInstance._InSeconds = EditorGUILayout.IntField("In Seconds", BuildingDataInstance._InSeconds);
     }
     private void ClearBoardButton()
     {
