@@ -18,7 +18,11 @@ public class BuildingStats : MonoBehaviour
     public void Start()
     {
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
-        AssignSliderValue();
+        AssignSliderMaxValue();      
+    }
+
+    public void StartTimer(int seconds)
+    {
         StartCoroutine(Timer(_seconds));
     }
     IEnumerator Timer(int seconds)
@@ -43,7 +47,7 @@ public class BuildingStats : MonoBehaviour
         
     }
 
-    void AssignSliderValue()
+    void AssignSliderMaxValue()
     {
         timerSlider.maxValue = _seconds;
     }
