@@ -956,7 +956,7 @@ MonoBehaviour:
   statName:
   - playerGold
   - playerGem
-  statValue: 0a00000014000000
+  statValue: a600000082060000
   statSprite:
   - {fileID: 21300000, guid: c3ddeff7f0ee48d4697b7b9639230f39, type: 3}
   - {fileID: 21300000, guid: 0ab114e0c79340f428ea7491194cbc1f, type: 3}

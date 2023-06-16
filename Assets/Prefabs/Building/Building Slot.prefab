@@ -731,6 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daea70a323d512f4a81f990e724d106f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  touchedShape: {fileID: 0}
 --- !u!114 &8886811968110717684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -746,6 +747,7 @@ MonoBehaviour:
   playerStats: {fileID: 0}
   buildingData: {fileID: 11400000, guid: eb6b3e2f26e52a14186eb42218f01f1b, type: 2}
   buildingSquareShapePrefab: {fileID: 1399997726750929839, guid: dcb6c4c237ff36d4995a705c53bc41ad, type: 3}
+  buildingShape: {fileID: 0}
   _cantPurchaseImage: {fileID: 8372558209994632672}
   _name: {fileID: 9119723443615336240}
   _iconBuilding: {fileID: 4973235781337242774}
@@ -893,7 +895,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 50
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

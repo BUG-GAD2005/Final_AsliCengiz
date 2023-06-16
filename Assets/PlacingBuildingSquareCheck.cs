@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlacingBuilding : MonoBehaviour
+public class PlacingBuildingSquareCheck : MonoBehaviour
 {
     public bool canPlacingSquare;
-
     public GameObject placeableGrid;
-    
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (IsGridEmpty(collision))
@@ -36,8 +35,8 @@ public class PlacingBuilding : MonoBehaviour
 
     bool IsGridEmpty(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("GridSquare") 
-            && 
+        if (collision.gameObject.CompareTag("GridSquare")
+            &&
             collision.gameObject.GetComponent<Image>().sprite.name.Contains("empty"))
         {
             return true;

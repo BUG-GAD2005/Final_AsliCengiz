@@ -7,16 +7,16 @@ using UnityEngine.EventSystems;
 public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     BuildingSlot buildingSlot;
+    PlacingBuilding placingBuilding;
 
     bool isDrag = false;
 
     public GameObject touchedShape;
     Vector3 touchedShapePos;
-    Vector3 touchedShapeDefaultPos;
 
     private void Start()
     {
-        buildingSlot = gameObject.GetComponent<BuildingSlot>();
+        buildingSlot = gameObject.GetComponent<BuildingSlot>(); 
     }
     public virtual void OnPointerDown(PointerEventData eventData)
     {
@@ -37,10 +37,10 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         if(!isDrag) 
         {
             touchedShape = buildingSlot.InstantiateBuildingShape();
+            placingBuilding = GameObject.FindObjectOfType<PlacingBuilding>();
             isDrag = true;
             touchedShapePos = gameObject.transform.position;
             touchedShapePos.z = 0;
-            touchedShapeDefaultPos = touchedShapePos;
         }    
     }
 
@@ -53,15 +53,15 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             touchedShape.transform.position = touchedShapePos;
             touchedShape.transform.localPosition = new Vector3(touchedShape.transform.localPosition.x, touchedShape.transform.localPosition.y, 0);
 
-            buildingSlot.TryPlaceBuilding();
+            placingBuilding.TryPlaceBuilding();
         }
     }
 
     void DropShape()
     {
         isDrag = false;
-        buildingSlot.PlaceBuilding();
-        buildingSlot.DestroyBuildingShape(touchedShape);
+        placingBuilding.PlaceBuilding();
+        placingBuilding.DestroyBuildingShape(touchedShape);
         touchedShape = null;
     }
 }

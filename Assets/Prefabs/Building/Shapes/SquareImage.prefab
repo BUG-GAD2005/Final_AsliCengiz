@@ -88,9 +88,9 @@ GameObject:
   - component: {fileID: 5103649659499434508}
   - component: {fileID: 2618993417750430243}
   - component: {fileID: 8565900252652739975}
-  - component: {fileID: 416512794202830174}
   - component: {fileID: -8627142410094395987}
   - component: {fileID: -1301577046369124251}
+  - component: {fileID: 1441491931676315809}
   m_Layer: 5
   m_Name: SquareImage
   m_TagString: SquareImage
@@ -170,19 +170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   occupiedImage: {fileID: 4849624999570279277}
---- !u!114 &416512794202830174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7122062654537051169}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a62d916e5e7d41468e43ac261fe001c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canPlacingSquare: 0
 --- !u!61 &-8627142410094395987
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -230,3 +217,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1441491931676315809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7122062654537051169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18a9bb35db2c1264f9ad0d59dfef45f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canPlacingSquare: 0
+  placeableGrid: {fileID: 0}

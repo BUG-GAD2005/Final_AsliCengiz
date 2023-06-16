@@ -9,7 +9,7 @@ public class BuildingSlot : MonoBehaviour
     public PlayerStats playerStats;
     public BuildingData buildingData;
     public GameObject buildingSquareShapePrefab;
-    BuildingSquareShape buildingSquareShape;
+    public BuildingShape buildingShape;
 
     MouseMovement mouseMovement;
     public Image _cantPurchaseImage;
@@ -66,36 +66,12 @@ public class BuildingSlot : MonoBehaviour
     public GameObject InstantiateBuildingShape()
     {
         GameObject currentPrefab = Instantiate(buildingSquareShapePrefab, transform);
-        buildingSquareShape = currentPrefab.GetComponent<BuildingSquareShape>();
-        buildingSquareShape.RequestNewShape(buildingData);
+        buildingShape = currentPrefab.GetComponent<BuildingShape>();
+        buildingShape.RequestNewShape(buildingData);
 
         currentPrefab.layer = LayerMask.NameToLayer("UI");
         currentPrefab.transform.position = Vector3.zero;
 
         return currentPrefab;
-    }
-
-    public void DestroyBuildingShape(GameObject instantiatedBuildingShape)
-    {
-        Destroy(instantiatedBuildingShape);
-    }
-
-    public void TryPlaceBuilding()
-    {
-        buildingSquareShape.PlacingShapeColoring();
-    }
-
-    public void PlaceBuilding()
-    {
-        buildingSquareShape.PlacingShapeInGrid();
-        SpendResources();
-    }
-
-    public void SpendResources()
-    {
-        if (buildingSquareShape.CanPlaceShape())
-        {
-            playerStats.SpendResources(buildingData._costGold, buildingData._costGem);
-        }
     }
 }
