@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a13aa88f7518f44bdb17ad65d57df6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  tile_building: {fileID: 21300000, guid: 3ea7f9cfad8daf4409029dc277d47ac5, type: 3}
   squareShapeImage: {fileID: 7122062654537051169, guid: 7b4da223a0bd57b4aba0b3322fcb9193, type: 3}
   buildingData: {fileID: 11400000, guid: f304df9277f916a4fb0e74cda982fcb8, type: 2}
   _currentShape: []

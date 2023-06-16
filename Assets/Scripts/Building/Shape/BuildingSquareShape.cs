@@ -8,6 +8,8 @@ public class BuildingSquareShape : MonoBehaviour
 {
     public bool isMovable { get; private set; } = true;
 
+    public Sprite tile_building;
+
     public GameObject squareShapeImage;
     public BuildingData buildingData;
     public List<GameObject> _currentShape = new List<GameObject>();
@@ -16,22 +18,32 @@ public class BuildingSquareShape : MonoBehaviour
         CreateShape(shapeData);
     }
 
-    public void PlacingShape()
+    public void PlacingShapeColoring()
     {
         foreach (var square in _currentShape)
         {
             if (CanPlaceShape())
             {
-                square.GetComponent<Image>().color = Color.green;
-
+                square.GetComponent<Image>().color = new Color(0, 1, 0, 0.5f); //green
             }
             else
             {
-                square.GetComponent<Image>().color = Color.red;
+                square.GetComponent<Image>().color = new Color(1, 0, 0, 0.5f); //red
+            }
+        }      
+    }
 
+    public void PlacingShapeInGrid()
+    {
+        foreach (var square in _currentShape)
+        {
+            if (CanPlaceShape())
+            {
+                //square.transform.position = square.GetComponent<PlacingBuilding>().placeableGrid.transform.position;
+                square.GetComponent<PlacingBuilding>().placeableGrid.GetComponent<Image>().sprite = tile_building;
             }
         }
-        
+
     }
 
     bool CanPlaceShape()

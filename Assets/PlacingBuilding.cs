@@ -6,36 +6,45 @@ using UnityEngine.UI;
 public class PlacingBuilding : MonoBehaviour
 {
     public bool canPlacingSquare;
+
+    public GameObject placeableGrid;
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("GridSquare"))
+        if (IsGridEmpty(collision))
         {
-            //CanPlacingSquare(true);
             canPlacingSquare = true;
-            //GetComponent<Image>().color = Color.green;
+            placeableGrid = collision.gameObject;
         }
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("GridSquare"))
+        if (IsGridEmpty(collision))
         {
-            //GetComponent<Image>().color = Color.green;
+            canPlacingSquare = true;
+
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("GridSquare"))
+        if (collision.gameObject == placeableGrid)
         {
             canPlacingSquare = false;
-            //CanPlacingSquare(false);
-            //GetComponent<Image>().color = Color.white;
-            //Debug.Log("aaaaaa");
-            //Debug.Log(collision.gameObject.name);
+            placeableGrid = null;
         }
     }
 
-    //public bool CanPlacingSquare(bool accuracy)
-    //{
-    //    return accuracy;
-    //}
+    bool IsGridEmpty(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("GridSquare") 
+            && 
+            collision.gameObject.GetComponent<Image>().sprite.name.Contains("empty"))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
 }

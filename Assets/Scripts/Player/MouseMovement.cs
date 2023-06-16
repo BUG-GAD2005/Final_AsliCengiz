@@ -29,7 +29,7 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     }
     public virtual void OnPointerUp(PointerEventData eventData)
     {
-        //DropShape();
+        DropShape();
     }
 
     void TouchShape()
@@ -63,19 +63,11 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
         if (touchedShape != null)
         {
-            //if (buildingSlot.TryPlaceBuilding())
-            //{
-            //    touchedShape = null;
-            //}
-            //else
-            //{
-            //    touchedShape.transform.position = touchedShapeDefaultPos;
-            //}
 
+        }
+            buildingSlot.PlaceBuilding();
             buildingSlot.DestroyBuildingShape(touchedShape);
             touchedShape = null;
-        }
-
     }
 
     

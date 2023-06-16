@@ -82,6 +82,11 @@ public class BuildingSlot : MonoBehaviour
 
     public void TryPlaceBuilding()
     {
-        buildingSquareShape.PlacingShape();
+        buildingSquareShape.PlacingShapeColoring();
+    }
+
+    public void PlaceBuilding()
+    {
+        buildingSquareShape.PlacingShapeInGrid();
     }
 }
