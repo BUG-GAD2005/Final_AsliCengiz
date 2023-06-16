@@ -49,7 +49,7 @@ public class BuildingSlot : MonoBehaviour
         }
     }
 
-    void EnableCheck()
+    public void EnableCheck()
     {
         if (CanPurchase())
         {
@@ -88,5 +88,14 @@ public class BuildingSlot : MonoBehaviour
     public void PlaceBuilding()
     {
         buildingSquareShape.PlacingShapeInGrid();
+        SpendResources();
+    }
+
+    public void SpendResources()
+    {
+        if (buildingSquareShape.CanPlaceShape())
+        {
+            playerStats.SpendResources(buildingData._costGold, buildingData._costGem);
+        }
     }
 }

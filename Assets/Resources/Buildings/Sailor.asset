@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Sailor
   _iconBuilding: {fileID: 21300000, guid: 491a90377ad1f5042bc794c58a8bb0db, type: 3}
-  _costGold: 1
-  _costGem: 2
+  _costGold: 66
+  _costGem: 666
   _generateGold: 0
   _generateGem: 0
   _InSeconds: 0

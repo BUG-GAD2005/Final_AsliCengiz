@@ -60,15 +60,8 @@ public class MouseMovement : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
     void DropShape()
     {
         isDrag = false;
-
-        if (touchedShape != null)
-        {
-
-        }
-            buildingSlot.PlaceBuilding();
-            buildingSlot.DestroyBuildingShape(touchedShape);
-            touchedShape = null;
+        buildingSlot.PlaceBuilding();
+        buildingSlot.DestroyBuildingShape(touchedShape);
+        touchedShape = null;
     }
-
-    
 }

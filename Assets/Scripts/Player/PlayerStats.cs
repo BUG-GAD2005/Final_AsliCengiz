@@ -4,53 +4,31 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using JetBrains.Annotations;
+using Unity.VisualScripting;
 
 public class PlayerStats : MonoBehaviour
 {
     public GameObject currentResourcesPrefab;
     public Transform resourcesLayout;
 
-    //public Sprite goldSprite;
-    //public Sprite gemSprite;
-
     public List<string> statName = new List<string> { "playerGold", "playerGem" };
     public List<int> statValue = new List<int>() { 10, 15 };
     public List<Sprite> statSprite = new List<Sprite>(2);
 
-    //Dictionary<string, int> statsDictionary = new Dictionary<string, int>()
-    //{
-    //    { "playerGold", 10 },
-    //    { "playerGem", 10 }
-
-    //};
-
-
-    
-
-    
-    
-
     private void Start()
     {
-        //DefaultStatValues();
         DisplayStats();
     }
 
-    //void DefaultStatValues()
-    //{
-    //    statValue[0] = 10;
-    //    statValue[1] = 10;
-    //}
-
     void DisplayStats()
     {
-
-        //foreach(var stat in statsDictionary) 
-        //{
-        //    GameObject currentObj = Instantiate(currentResourcesPrefab, resourcesLayout);
-        //    CurrentResource currentObjValues = currentObj.GetComponent<CurrentResource>();
-        //    currentObjValues.image.sprite = stat.Key
-        //}
+        if (resourcesLayout.childCount > 0)
+        {
+            for (int i = 0; i < resourcesLayout.childCount; i++)
+            {
+                Destroy(resourcesLayout.GetChild(i).gameObject);
+            }
+        }
 
         for (int i = 0; i < statName.Count; i++)
         {
@@ -59,7 +37,34 @@ public class PlayerStats : MonoBehaviour
             currentObjValues.image.sprite = statSprite[i];
             currentObjValues.value.text = statValue[i].ToString();
         }
+    }
 
+    public void SpendResources(int gold, int gem)
+    {
+        statValue[0] -= gold;
+        statValue[1] -= gem;
 
+        DisplayStats();
+
+        AllBuildingsEnableCheck();
+    }
+
+    public void EarnResources(int gold, int gem)
+    {
+        statValue[0] += gold;
+        statValue[1] += gem;
+
+        DisplayStats();
+
+        AllBuildingsEnableCheck();
+    }
+
+    void AllBuildingsEnableCheck()
+    {
+        BuildingSlot[] _buildings = GameObject.FindObjectsOfType<BuildingSlot>();
+        foreach (var building in _buildings)
+        {
+            building.EnableCheck();
+        }
     }
 }

@@ -46,7 +46,7 @@ public class BuildingSquareShape : MonoBehaviour
 
     }
 
-    bool CanPlaceShape()
+    public bool CanPlaceShape()
     {
         foreach (var square in _currentShape)
         {
