@@ -13,11 +13,11 @@ public class GameSaveLoad : MonoBehaviour
 {
     public GameData _gameData;
     string fullPath;
+    public int automaticSaveSecond;
 
     PlayerStats playerStats;
     InstantiateTimer instantiateTimer;
     InstantiateGridAtLayout instantiateGridAtLayout;
-    RestartGame restartGame;
 
     public List<BuildingShape> buildingShapesList;
 
@@ -27,9 +27,10 @@ public class GameSaveLoad : MonoBehaviour
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
         instantiateTimer = GameObject.FindObjectOfType<InstantiateTimer>();
         instantiateGridAtLayout = GameObject.FindObjectOfType<InstantiateGridAtLayout>();
-        restartGame = GameObject.FindObjectOfType<RestartGame>();
         fullPath = Application.persistentDataPath + "/GameData.txt";
         LoadGame();
+
+        StartCoroutine(AutomaticSave(automaticSaveSecond));
     }
 
     #region Load
@@ -157,17 +158,13 @@ public class GameSaveLoad : MonoBehaviour
         SaveGame(gameData);
     }
     #endregion
-    private void Update()
+
+    IEnumerator AutomaticSave(int second)
     {
-        if(Input.GetKeyDown(KeyCode.S))
-        {
-            SaveGameData();
-            Debug.Log("saved");
-        }
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            LoadGame();
-            Debug.Log("loaded");
-        }
+        yield return new WaitForSecondsRealtime(second);
+
+        SaveGameData();
+        StartCoroutine(AutomaticSave(automaticSaveSecond));
+        Debug.Log("saved");
     }
 }

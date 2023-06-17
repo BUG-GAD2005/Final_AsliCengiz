@@ -40,7 +40,7 @@ public class PlayerStats : MonoBehaviour
             currentObjValues.value.text = statValue[i].ToString();
         }
 
-        SaveGame();
+        //SaveGame();
     }
 
     public void SpendResources(int gold, int gem)
