@@ -541,7 +541,7 @@ GameObject:
   - component: {fileID: 838654043}
   - component: {fileID: 838654042}
   m_Layer: 0
-  m_Name: SaveLoad
+  m_Name: GameSaveLoad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1122,15 +1122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb4494f33a7820c45a9d2a71946470d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameSaveLoad: {fileID: 838654042}
-  gameData:
-    playerStatList: 
-    emptyGridIndexInScene: 
-    buildingStatsList_seconds: 
-    buildingStatsList_earnGold: 
-    buildingStatsList_earnGem: 
-    timerPosList: []
-    timerValuesList: 
 --- !u!1 &1653901384
 GameObject:
   m_ObjectHideFlags: 0

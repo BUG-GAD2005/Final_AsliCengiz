@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: Tower
   _iconBuilding: {fileID: 21300000, guid: 17efc2c5a3036824084ae09012a01a33, type: 3}
-  _costGold: 5
+  _costGold: 50
   _costGem: 5
-  _earnGold: 6
+  _earnGold: 16
   _earnGem: 6
   _InSeconds: 5
   _columns: 1

@@ -10,6 +10,7 @@ public class PlayerStats : MonoBehaviour
 {
     public GameObject currentResourcesPrefab;
     public Transform resourcesLayout;
+    GameSaveLoad gameSaveLoad;
 
     public List<string> statName = new List<string> { "playerGold", "playerGem" };
     public List<int> statValue = new List<int>() { 10, 15 };
@@ -17,10 +18,11 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        gameSaveLoad = GameObject.FindObjectOfType<GameSaveLoad>();
         DisplayStats();
     }
 
-    void DisplayStats()
+    public void DisplayStats()
     {
         if (resourcesLayout.childCount > 0)
         {
@@ -37,6 +39,8 @@ public class PlayerStats : MonoBehaviour
             currentObjValues.image.sprite = statSprite[i];
             currentObjValues.value.text = statValue[i].ToString();
         }
+
+        SaveGame();
     }
 
     public void SpendResources(int gold, int gem)
@@ -59,12 +63,17 @@ public class PlayerStats : MonoBehaviour
         AllBuildingsEnableCheck();
     }
 
-    void AllBuildingsEnableCheck()
+    public void AllBuildingsEnableCheck()
     {
         BuildingSlot[] _buildings = GameObject.FindObjectsOfType<BuildingSlot>();
         foreach (var building in _buildings)
         {
             building.EnableCheck();
         }
+    }
+
+    void SaveGame()
+    {
+        gameSaveLoad.SaveGameData();
     }
 }

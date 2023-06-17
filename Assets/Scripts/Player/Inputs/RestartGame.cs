@@ -4,23 +4,29 @@ using UnityEngine;
 
 public class RestartGame : MonoBehaviour
 {
-    public GameSaveLoad gameSaveLoad;
-    public GameData gameData;
+    GameSaveLoad gameSaveLoad;
+    PlayerStats playerStats;
 
     private void Start()
     {
         gameSaveLoad = GameObject.FindObjectOfType<GameSaveLoad>();
-        gameData = gameSaveLoad._gameData;
+        playerStats = GameObject.FindObjectOfType<PlayerStats>();
+
     }
     public void RestartButton()
     {
         ClearBoard();
-
-        gameSaveLoad.SaveGameData();
-        gameSaveLoad.LoadGame();
-
+        DestroyTimers();
+        SetPlayerResourcesDefault();
+        StartCoroutine(RestartButtonWait());
     }
 
+    IEnumerator RestartButtonWait()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        gameSaveLoad.SaveGameData();
+        gameSaveLoad.LoadGame();
+    }
     void ClearBoard()
     {
         GameObject[] grids = GameObject.FindGameObjectsWithTag("GridSquare");
@@ -28,8 +34,7 @@ public class RestartGame : MonoBehaviour
         { 
             Destroy(grid);
         }
-        Debug.Log("save yap");
-
+        Debug.Log("clear board");
     }
 
     void DestroyTimers()
@@ -39,11 +44,14 @@ public class RestartGame : MonoBehaviour
         {
             Destroy(timer);
         }
-        Debug.Log("save yap");
+        Debug.Log("destroy timers");
     }
 
     void SetPlayerResourcesDefault()
     {
-
+        playerStats.statValue[0] = 10;
+        playerStats.statValue[1] = 10;
+        playerStats.DisplayStats();
+        playerStats.AllBuildingsEnableCheck();
     }
 }

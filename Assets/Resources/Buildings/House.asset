@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: House
   _iconBuilding: {fileID: 21300000, guid: c0b4c11e757f56d4190d27e23bc55f8c, type: 3}
-  _costGold: 2
+  _costGold: 12
   _costGem: 3
-  _earnGold: 4
+  _earnGold: 11
   _earnGem: 4
   _InSeconds: 20
   _columns: 3
