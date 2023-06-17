@@ -16,7 +16,7 @@ public class InstantiateGridAtLayout : MonoBehaviour
 
     public void InstantiateGrid(List<int> emptyGridIndex)
     {
-        if (IsListNull())
+        if (IsListNull(emptyGridIndex))
         {
             for (int i = 0; i < (columns * rows); i++)
             {
@@ -34,30 +34,25 @@ public class InstantiateGridAtLayout : MonoBehaviour
                     if (i == emptyGridIndex[j])
                     {
                         grid.GetComponent<Image>().sprite = tile_empty;
+                        break;
                     }
-                    else
-                    {
-                        grid.GetComponent<Image>().sprite = tile_building;
-                    }
+
+                    grid.GetComponent<Image>().sprite = tile_building;
                 }
             }
         }
         
     }
 
-    bool IsListNull()
+    bool IsListNull(List<int> emptyGridIndex)
     {
-        //if (emptyGridIndex.Count > 0)
-        //{
-        //    return false;
-        //}
-        //else
-        //{
-        //    return true;
-        //}
-
         GameObject[] grids = GameObject.FindGameObjectsWithTag("GridSquare");
-        for (int i = 0; i < grids.Length; i++)
+        for (int i = 0; i < grids.Length;)
+        {
+            return false;
+        }
+
+        if (emptyGridIndex.Count > 0)
         {
             return false;
         }

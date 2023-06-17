@@ -23,7 +23,7 @@ public class BuildingStats : MonoBehaviour
 
     public void StartTimer(int seconds)
     {
-        StartCoroutine(Timer(_seconds));
+        StartCoroutine(Timer(seconds));
     }
     IEnumerator Timer(int seconds)
     {

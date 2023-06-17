@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3509136958641778848}
   m_Layer: 5
   m_Name: Timer
-  m_TagString: Untagged
+  m_TagString: Timer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -54,6 +54,8 @@ MonoBehaviour:
   timerSlider: {fileID: 6803768836144273242}
   textValue: {fileID: 6803768836157348576}
   _seconds: 6
+  _earnGold: 0
+  _earnGem: 0
 --- !u!1 &6803768835418315522
 GameObject:
   m_ObjectHideFlags: 0

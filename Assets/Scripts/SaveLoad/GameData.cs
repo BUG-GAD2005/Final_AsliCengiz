@@ -9,7 +9,10 @@ public class GameData
 
     public List<int> emptyGridIndexInScene = new List<int>();
 
-    public List<(int, int, int)> buildingStatsList = new List<(int, int, int)>();
+    public List<int> buildingStatsList_seconds = new List<int>();
+    public List<int> buildingStatsList_earnGold = new List<int>();
+    public List<int> buildingStatsList_earnGem = new List<int>();
+
     public List<Vector3> timerPosList = new List<Vector3>();
     public List<int> timerValuesList = new List<int>();
 

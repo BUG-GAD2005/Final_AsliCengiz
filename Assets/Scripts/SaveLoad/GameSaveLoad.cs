@@ -11,7 +11,7 @@ using UnityEngine.Playables;
 [System.Serializable]
 public class GameSaveLoad : MonoBehaviour
 {
-    GameData _gameData;
+    public GameData _gameData;
     string fullPath;
 
     PlayerStats playerStats;
@@ -36,13 +36,10 @@ public class GameSaveLoad : MonoBehaviour
         //Read File
         if (File.Exists(fullPath))
         {
-            // Read the entire file and save its contents.
             string fileContents = File.ReadAllText(fullPath);
             _gameData = JsonUtility.FromJson<GameData>(fileContents);
 
-            //LoadGameData();
-            playerStats.statValue = _gameData.playerStatList;
-            instantiateGridAtLayout.InstantiateGrid(_gameData.emptyGridIndexInScene);
+            LoadGameData();
         }
     }
 
@@ -50,9 +47,6 @@ public class GameSaveLoad : MonoBehaviour
     {
         LoadPlayerStats();
         LoadGridsWithSprite();
-        //LoadTimerObjects(_gameData);
-        //LoadTimerValues();
-        //LoadTimerPos();
         LoadTimers();
     }
 
@@ -62,33 +56,12 @@ public class GameSaveLoad : MonoBehaviour
     }
     void LoadGridsWithSprite()
     {
-        //_gameData.emptyGridIndexInScene = gameData.emptyGridIndexInScene;
         instantiateGridAtLayout.InstantiateGrid(_gameData.emptyGridIndexInScene);
     }
 
-    //void LoadTimerObjects(GameData gameData)
-    //{
-    //    timersInScene = gameData.timerList;
-    //}
-
-    //void LoadTimerValues()
-    //{
-    //    _gameData.timerValuesList = gameData.timerValuesList;
-    //}
-    //void LoadTimerPos()
-    //{
-    //    _gameData.timerPosList = gameData.timerPosList;
-    //}
     void LoadTimers()
     {
-        //_gameData.buildingStatsList = gameData.buildingStatsList;
-        for (int i = 0; i < _gameData.buildingStatsList.Count; i++)
-        {
-            instantiateTimer.InstantiateTimerPrefabForLoad(_gameData.timerPosList[i], _gameData.timerValuesList[i]);
-
-        }
-        //LoadTimerObjects(gameData);
-        //LoadTimerValues(gameData);
+        instantiateTimer.InstantiateTimerPrefabForLoad(_gameData);
     }
     #endregion
 
@@ -112,10 +85,19 @@ public class GameSaveLoad : MonoBehaviour
 
     void ClearArraysForSave()
     {
-        if (_gameData.buildingStatsList != null && _gameData.buildingStatsList.Count > 0)
+        if (_gameData.buildingStatsList_seconds != null && _gameData.buildingStatsList_seconds.Count > 0)
         {
-            _gameData.buildingStatsList.Clear();
+            _gameData.buildingStatsList_seconds.Clear();
         }
+        if (_gameData.buildingStatsList_earnGold != null && _gameData.buildingStatsList_earnGold.Count > 0)
+        {
+            _gameData.buildingStatsList_earnGold.Clear();
+        }
+        if (_gameData.buildingStatsList_earnGem != null && _gameData.buildingStatsList_earnGem.Count > 0)
+        {
+            _gameData.buildingStatsList_earnGem.Clear();
+        }
+
         if (_gameData.timerPosList != null && _gameData.timerPosList.Count > 0)
         {
             _gameData.timerPosList.Clear();
@@ -124,6 +106,7 @@ public class GameSaveLoad : MonoBehaviour
         {
             _gameData.timerValuesList.Clear();
         }
+
         if(_gameData.emptyGridIndexInScene != null && _gameData.emptyGridIndexInScene.Count > 0)
         {
             _gameData.emptyGridIndexInScene.Clear();
@@ -144,7 +127,10 @@ public class GameSaveLoad : MonoBehaviour
         BuildingStats[] buildingStats = GameObject.FindObjectsOfType<BuildingStats>();
         foreach (BuildingStats building in buildingStats)
         {
-            _gameData.buildingStatsList.Add((building._seconds, building._earnGold, building._earnGem));
+            _gameData.buildingStatsList_seconds.Add(building._seconds);
+            _gameData.buildingStatsList_earnGold.Add(building._earnGold);
+            _gameData.buildingStatsList_earnGem.Add(building._earnGem);
+
             _gameData.timerValuesList.Add((int)building.timerSlider.value);
             _gameData.timerPosList.Add(building.gameObject.transform.position);
         }       
@@ -158,7 +144,10 @@ public class GameSaveLoad : MonoBehaviour
 
             emptyGridIndexInScene = _gameData.emptyGridIndexInScene,
 
-            buildingStatsList = _gameData.buildingStatsList,
+            buildingStatsList_seconds = _gameData.buildingStatsList_seconds,
+            buildingStatsList_earnGold = _gameData.buildingStatsList_earnGold,
+            buildingStatsList_earnGem = _gameData.buildingStatsList_earnGem,
+
             timerValuesList = _gameData.timerValuesList,
             timerPosList = _gameData.timerPosList,
         };

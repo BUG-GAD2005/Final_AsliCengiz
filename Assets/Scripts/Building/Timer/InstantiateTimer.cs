@@ -20,11 +20,18 @@ public class InstantiateTimer : MonoBehaviour
         StartTimer(upperSquare, buildingShape);
     }
 
-    public void InstantiateTimerPrefabForLoad(Vector3 prefabPos, int inSecond)
+    public void InstantiateTimerPrefabForLoad(GameData gameData)
     {
-        GameObject timerPref = Instantiate(timerPrefab, canvas.transform);
-        timerPref.transform.position = prefabPos;
-        timerPref.GetComponent<BuildingStats>().StartTimer(inSecond);
+        for (int i = 0; i < gameData.timerValuesList.Count; i++)
+        {
+            GameObject timerPref = Instantiate(timerPrefab, canvas.transform);
+            timerPref.transform.position = gameData.timerPosList[i];
+            timerPref.GetComponent<BuildingStats>()._seconds = gameData.buildingStatsList_seconds[i];
+            timerPref.GetComponent<BuildingStats>()._earnGold = gameData.buildingStatsList_earnGold[i];
+            timerPref.GetComponent<BuildingStats>()._earnGem = gameData.buildingStatsList_earnGem[i];
+            timerPref.GetComponent<BuildingStats>().StartTimer(gameData.timerValuesList[i]);
+        }
+        
     }
     void StartTimer(Vector3 upperSquare, BuildingShape buildingShape)
     {
