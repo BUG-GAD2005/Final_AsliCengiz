@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using System.IO;
 using System.Linq;
 using System;
-using static UnityEditor.Progress;
+//using static UnityEditor.Progress;
 using UnityEngine.Playables;
 
 [System.Serializable]
@@ -16,6 +16,7 @@ public class GameSaveLoad : MonoBehaviour
     public int automaticSaveSecond;
 
     PlayerStats playerStats;
+    RestartGame restartGame;
     InstantiateTimer instantiateTimer;
     InstantiateGridAtLayout instantiateGridAtLayout;
 
@@ -25,6 +26,7 @@ public class GameSaveLoad : MonoBehaviour
     void Start()
     {
         playerStats = GameObject.FindObjectOfType<PlayerStats>();
+        restartGame = GameObject.FindObjectOfType<RestartGame>();
         instantiateTimer = GameObject.FindObjectOfType<InstantiateTimer>();
         instantiateGridAtLayout = GameObject.FindObjectOfType<InstantiateGridAtLayout>();
         fullPath = Application.persistentDataPath + "/GameData.txt";
@@ -43,6 +45,10 @@ public class GameSaveLoad : MonoBehaviour
             _gameData = JsonUtility.FromJson<GameData>(fileContents);
 
             LoadGameData();
+        }
+        else
+        {
+            restartGame.RestartButton();
         }
     }
 

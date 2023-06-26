@@ -5,13 +5,12 @@ using UnityEngine;
 public class RestartGame : MonoBehaviour
 {
     GameSaveLoad gameSaveLoad;
-    PlayerStats playerStats;
+    public PlayerStats playerStats;
 
     private void Start()
     {
         gameSaveLoad = GameObject.FindObjectOfType<GameSaveLoad>();
-        playerStats = GameObject.FindObjectOfType<PlayerStats>();
-
+        //playerStats = GameObject.FindObjectOfType<PlayerStats>();
     }
     public void RestartButton()
     {
